@@ -1,0 +1,25 @@
+.leftPanel {
+  float:left;
+  padding: 10px;
+  max-width: 300px; 
+}
+
+.form {
+  margin-bottom: 10px;
+}
+
+.frase {
+  
+}
+
+.ajuda {
+  border-width: thin;
+  border-color: black;
+  padding: 10px;
+}
+
+.virtualJonah {
+  display: inline;
+  margin: 10px;
+  float: left;
+}

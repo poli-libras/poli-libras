@@ -1,0 +1,3 @@
+O poli-libras-app ainda é uma aplicação baseada em linha de comando, mas a ideia é transformá-la numa aplicação desktop com interface gráfica, possivelmente implementada com a biblioteca Swing.
+
+Por hora, o poli-libras-app.jar é na verdade o mesmo que o poli-libras-applet.jar. Mas com o desenvolvimento da aplicação desktop, deveremos ter separado o jar do applet (assim como no polilibrasweb) e o jar "app", que é que vai ter a aplicação swing.
