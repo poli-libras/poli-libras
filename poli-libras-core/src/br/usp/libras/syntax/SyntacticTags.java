@@ -21,10 +21,7 @@ public class SyntacticTags {
 	public static final String OTHER = "O";
 	
 	public static boolean isObject(String tag) {
-		if (tag.equals(ACC) || tag.equals(ACC_PAS) || tag.equals(DAT) || tag.equals(PIV))
-			return true;
-		else
-			return false;
+		return (tag.equals(ACC) || tag.equals(ACC_PAS) || tag.equals(DAT) || tag.equals(PIV));
 	}
 
 }

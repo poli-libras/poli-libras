@@ -34,7 +34,7 @@ public class LinkingVerbFinder {
 	/**
 	 * Dada uma lista de TokenMorph, retorna uma nova lista contendo apenas os tokens que são verbos de ligação. 
 	 * @param tokens
-	 * @return
+	 * @return Lista contendo tokens do verbo de ligação. Se não houver nenhum, retorna uma lista vazia.
 	 */
 	public List<TokenMorph> findLinkingVerbs(List<TokenMorph> tokens) {
 		

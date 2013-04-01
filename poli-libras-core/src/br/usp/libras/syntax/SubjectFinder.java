@@ -5,10 +5,15 @@ import java.util.List;
 
 public class SubjectFinder {
 
+    /**
+     * 
+     * @param tokens
+     * @return
+     */
 	public List<TokenMorph> findSubject(List<TokenMorph> tokens) {
 		
 		List<TokenMorph> subject = new ArrayList<TokenMorph>();
-		for (TokenMorph tk: tokens) {
+		for (TokenMorph tk : tokens) {
 			if (tk.getSyntaticTag().equals(SyntacticTags.SUBJ)) 
 				subject.add(tk);
 		}

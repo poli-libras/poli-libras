@@ -16,7 +16,7 @@ public class DicTester {
         Sign s = dic.signByName("CORINGA");
         System.out.println(s);
         
-        s = dic.simpleTranslate("coringa");
+        s = dic.simpleTranslate("bola");        
         System.out.println(s);
     }
 

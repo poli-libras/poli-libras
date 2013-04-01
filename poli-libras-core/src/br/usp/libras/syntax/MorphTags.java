@@ -10,24 +10,24 @@ package br.usp.libras.syntax;
  */
 public class MorphTags {
 
-	public static final String NOUN = "n";
-	public static final String PROP = "prop";
-	public static final String ADJ = "adj";
-	public static final String N_ADJ = "n-adj";
-	public static final String V_FIN = "v-fin";
-	public static final String V_INF = "v-inf";
-	public static final String V_PCP = "v-pcp";
-	public static final String V_GER = "v-ger";
-	public static final String ART = "art";
-	public static final String PRON_PERS = "pron-pers";
-	public static final String PRON_DET = "pron-det";
+	public static final String NOUN = "n"; // Substantivo comum
+	public static final String PROP = "prop"; // Substantivo próprio
+	public static final String ADJ = "adj"; // Adjetivo
+	public static final String N_ADJ = "n-adj"; // Substantivo ou adjetivo
+	public static final String V_FIN = "v-fin"; // verbo conjugado
+	public static final String V_INF = "v-inf"; // verbo no infinitivo
+	public static final String V_PCP = "v-pcp"; // verbo no particípio
+	public static final String V_GER = "v-ger"; // verbo no gerundio
+	public static final String ART = "art"; // artigo
+	public static final String PRON_PERS = "pron-pers"; // Pronome pessoal
+	public static final String PRON_DET = "pron-det"; // 
 	public static final String PRON_INDP = "pron-indp";
-	public static final String ADV = "adv";
-	public static final String NUM = "num";
-	public static final String PRP = "prp";
-	public static final String INTJ = "intj";
-	public static final String CONJ_S = "conj-s";
-	public static final String CONJ_C = "conj-c";
+	public static final String ADV = "adv"; // advérbio
+	public static final String NUM = "num"; // numeral
+	public static final String PRP = "prp"; // preposição
+	public static final String INTJ = "intj"; // interjeição
+	public static final String CONJ_S = "conj-s"; // conjunção subordinativa
+	public static final String CONJ_C = "conj-c"; // conjunção coordenativa
 	
 	public static boolean isVerb(String tag) {
 		if (tag.equals(V_FIN) || tag.equals(V_GER) || tag.equals(V_INF) || tag.equals(V_PCP))
