@@ -38,6 +38,7 @@ public class Contextualiser {
 
     public List<Sign> contextualise(List<TokenMorph> tokens) {
 //        rel = getTokSignRelation(tokens);
+        // a
         
         relcompleta = getCompleteTokSignRelation(tokens);
         
