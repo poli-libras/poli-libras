@@ -1,0 +1,16 @@
+=========================
+poli-libras
+=========================
+
+Code license: GNU GPL v3
+
+--------------
+Modules
+
+poli-libras-core: core funcionality of the translator.
+poli-libras-app: shell application for the translator.
+poli-libras-web: web applet for the translator.
+virtual-jonah: avatar for signing.
+wiki-libras: collaborative dictionary portuguese-Libras with webservices.
+sign-model: the model for representing signs.
+
