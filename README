@@ -1,16 +1,24 @@
-=========================
+﻿=========================
 poli-libras
 =========================
 
 Code license: GNU GPL v3
 
 --------------
-Modules
+Módulos
 
-poli-libras-core: core funcionality of the translator.
-poli-libras-app: shell application for the translator.
-poli-libras-web: web applet for the translator.
-virtual-jonah: avatar for signing.
-wiki-libras: collaborative dictionary portuguese-Libras with webservices.
-sign-model: the model for representing signs.
+------------------
+poli-libras-core
+------------------
+Todas as funcionalidades de tradução estão aqui.
+
+------------------
+poli-libras-app
+------------------
+Aplicação desktop para o tradutor. Usa um applet gráfico do virtual-jonah para mostrar os sinais e receber a entrada.
+
+------------------
+poli-libras-web
+------------------
+Aplicação web, para deploy em servidor de aplicação (ex. tomcat). Oferece uma interface web para o tradutor: o usuário entra com a frase num campo de texto e existe um applet do virtual-jonah na página para a visualização dos sinais.
 
