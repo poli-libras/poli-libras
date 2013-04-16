@@ -16,6 +16,7 @@ Todas as funcionalidades de tradução estão aqui.
 poli-libras-app
 ------------------
 Aplicação desktop para o tradutor. Usa um applet gráfico do virtual-jonah para mostrar os sinais e receber a entrada.
+PS.: virtual-jonah utiliza biblioteca do processing (www.processing.org) para a saída gráfica.
 
 ------------------
 poli-libras-web
