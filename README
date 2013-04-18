@@ -1,12 +1,18 @@
 ﻿=========================
-poli-libras
+Poli-Libras
 =========================
+Sistema tradutor de português para Libras.
+O objetivo do tradutor é traduzir uma frase em português para uma sequência de sinais em LIBRAS. 
+A frase deve ser digitada pelo usuário e a tradução em Libras será sinalizada por um avatar 3D em computação gráfica.
 
+A tradução é dirigida por sintaxe, o que quer dizer que é realizada uma análise sintática da estrutura da frase em língua portuguesa e então aplicada uma transformação que faz a adaptação da sintaxe do português para a LIBRAS.
+
+
+-------------------------
 Code license: GNU GPL v3
+-------------------------
 
---------------
 Módulos
-
 ------------------
 poli-libras-core
 ------------------
