@@ -48,7 +48,6 @@ local.properties
 *_p.c
 *.ilk
 *.meta
-*.obj
 *.pch
 *.pdb
 *.pgc
@@ -62,7 +61,7 @@ local.properties
 *.vspscc
 .builds
 *.dotCover
-
+*~s
 ## TODO: If you have NuGet Package Restore enabled, uncomment this
 #packages/
 
