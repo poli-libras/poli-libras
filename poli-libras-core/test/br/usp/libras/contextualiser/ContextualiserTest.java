@@ -15,6 +15,7 @@ import br.usp.libras.sign.VerbType;
 import br.usp.libras.sign.movement.Direction;
 import br.usp.libras.sign.movement.HandMovement;
 import br.usp.libras.sign.movement.Segment;
+import br.usp.libras.sign.movement.Speed;
 import br.usp.libras.sign.symbol.Hand;
 import br.usp.libras.sign.symbol.HandOrientation;
 import br.usp.libras.sign.symbol.HandPlane;
@@ -67,6 +68,24 @@ public class ContextualiserTest {
 		Segment seg = hand.getMovement().getSegments().get(0);
 		assertEquals(Direction.PARA_TRAS, seg.getDirection());
 	}
+	
+	@Test
+	public void shouldMakeSignMovementFast(){
+		
+		SignDictionary dic = setUpDic();
+		List<TokenMorph> tokens = getStatementEuOlheiRapidamente();
+		
+		Contextualiser contex = new Contextualiser(dic);
+		List<Sign> signs = contex.contextualise(tokens);
+		
+		assertEquals(2, signs.size());
+		Sign olheiSign = signs.get(1);
+		assertEquals("OLHAR", olheiSign.getName());
+		HandMovement move = olheiSign.getSymbols().get(0).getRightHand().getMovement();
+		assertEquals(Speed.RAPIDO, move.getSpeed());
+		
+	}
+	
 
 	private Sign generateSign(String signName) {
 
@@ -174,5 +193,19 @@ public class ContextualiserTest {
 		tokens.add(tk);
 		return tokens;
 	}
+	
+	private List<TokenMorph> getStatementEuOlheiRapidamente() {
+
+		List<TokenMorph> tokens = new ArrayList<TokenMorph>();
+		TokenMorph tk = new TokenMorph("eu", "eu", SyntacticTags.SUBJ, PhraseTags.NP, MorphTags.PRON_PERS, "M/F=1S=NOM");
+		tokens.add(tk);
+		tk = new TokenMorph("olhei", "olhar", SyntacticTags.VERB, PhraseTags.VP, MorphTags.V_FIN, "PR=1S=IND");
+		tk.setProperty(TokenProperties.SUBJECT_TYPE_KEY, TokenProperties.FIRSTPERSON);
+		tk.setProperty(TokenProperties.ADV_TYPE_KEY, TokenProperties.ADV_MAN_FAST);
+		tokens.add(tk);
+		return tokens;
+	}
+	
+	
 
 }
