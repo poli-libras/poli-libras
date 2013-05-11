@@ -1,6 +1,7 @@
 package br.usp.libras.syntax;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,18 @@ public class ObjectFinderTest {
 		assertEquals("o", object.get(1).getLexeme());
 		assertEquals("dono", object.get(2).getLexeme());
 	}
+
+	@Test 
+	public void shouldReturnEmptyListWhenThereIsNoObject(){
+		
+		List<TokenMorph> tokens = getStatementWithoutObject();
+		ObjectFinder finder = new ObjectFinder();
+		List<TokenMorph> object = finder.findObject(tokens);
+		
+		assertTrue(object.isEmpty());
+	}
+	
+	
 	
 	private List<TokenMorph> getStatement() {
 		
@@ -45,4 +58,24 @@ public class ObjectFinderTest {
 
 		return tokens;
 	}
+	
+	/**
+	 * Retorna "O cachorro latiu"
+	 * @return
+	 */
+	private List<TokenMorph> getStatementWithoutObject() {
+		
+		List<TokenMorph> tokens = new ArrayList<TokenMorph>();
+		TokenMorph tk = new TokenMorph("O", SyntacticTags.SUBJ, MorphTags.ART);
+		tokens.add(tk);
+		
+		tk = new TokenMorph("cachorro", SyntacticTags.SUBJ, MorphTags.NOUN);
+		tokens.add(tk);
+		
+		tk = new TokenMorph("latiu", SyntacticTags.VERB, MorphTags.V_FIN);
+		tokens.add(tk);
+
+		return tokens;
+	}
+
 }
