@@ -44,6 +44,20 @@ public class ObjectFinderTest {
 		assertEquals("ração", object.get(0).getLexeme());
 	}
 	
+	@Test
+	public void shouldFindMultiObjectTokens() {
+		
+		List<TokenMorph> tokens = getStatementWithMultiObject();
+		ObjectFinder finder = new ObjectFinder();
+		List<TokenMorph> object = finder.findObject(tokens);
+			
+		assertEquals(5, object.size());
+		assertEquals("um", object.get(0).getLexeme());
+		assertEquals("osso", object.get(1).getLexeme());
+		assertEquals("velho", object.get(2).getLexeme());
+		assertEquals("do", object.get(3).getLexeme());
+		assertEquals("lixo", object.get(4).getLexeme());
+	}
 	
 	private List<TokenMorph> getStatement() {
 		
@@ -110,5 +124,33 @@ public class ObjectFinderTest {
 		return tokens;
 	}
 	
+	
+	/**
+	 * Retorna "O cachorro comeu um osso velho do lixo"
+	 * @return
+	 */
+	private List<TokenMorph> getStatementWithMultiObject() {
+		
+		List<TokenMorph> tokens = new ArrayList<TokenMorph>();
+		
+		TokenMorph tk = new TokenMorph("O", SyntacticTags.SUBJ, MorphTags.ART);
+		tokens.add(tk);		
+		tk = new TokenMorph("cachorro", SyntacticTags.SUBJ, MorphTags.NOUN);
+		tokens.add(tk);		
+		tk = new TokenMorph("comeu", SyntacticTags.VERB, MorphTags.V_FIN);
+		tokens.add(tk);
+		tk = new TokenMorph("um", SyntacticTags.ACC, MorphTags.ART);
+		tokens.add(tk);
+		tk = new TokenMorph("osso", SyntacticTags.ACC, MorphTags.NOUN);
+		tokens.add(tk);
+		tk = new TokenMorph("velho", SyntacticTags.ACC, MorphTags.ADJ);
+		tokens.add(tk);
+		tk = new TokenMorph("do", SyntacticTags.ACC, MorphTags.PRP);
+		tokens.add(tk);
+		tk = new TokenMorph("lixo", SyntacticTags.ACC, MorphTags.NOUN);	
+		tokens.add(tk);
+
+		return tokens;
+	}
 
 }
