@@ -33,6 +33,16 @@ public class ObjectFinderTest {
 		assertTrue(object.isEmpty());
 	}
 	
+	@Test
+	public void shouldFindOneObjectTokens() {
+		
+		List<TokenMorph> tokens = getStatementWithOneObject();
+		ObjectFinder finder = new ObjectFinder();
+		List<TokenMorph> object = finder.findObject(tokens);
+		
+		assertEquals(1, object.size());
+		assertEquals("ração", object.get(0).getLexeme());
+	}
 	
 	
 	private List<TokenMorph> getStatement() {
@@ -77,5 +87,28 @@ public class ObjectFinderTest {
 
 		return tokens;
 	}
+	
+	/**
+	 * Retorna "O cachorro comeu ração"
+	 * @return
+	 */
+	private List<TokenMorph> getStatementWithOneObject() {
+		
+		List<TokenMorph> tokens = new ArrayList<TokenMorph>();
+		
+		TokenMorph tk = new TokenMorph("O", SyntacticTags.SUBJ, MorphTags.ART);
+		tokens.add(tk);
+		
+		tk = new TokenMorph("cachorro", SyntacticTags.SUBJ, MorphTags.NOUN);
+		tokens.add(tk);
+		
+		tk = new TokenMorph("comeu", SyntacticTags.VERB, MorphTags.V_FIN);
+		
+		tk = new TokenMorph("ração", SyntacticTags.ACC, MorphTags.NOUN);
+		tokens.add(tk);
+
+		return tokens;
+	}
+	
 
 }
