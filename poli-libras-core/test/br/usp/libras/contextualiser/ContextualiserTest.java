@@ -7,6 +7,8 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
 
+import junit.framework.Assert;
+
 import org.junit.Test;
 
 import br.usp.libras.dic.SignDictionary;
@@ -86,6 +88,31 @@ public class ContextualiserTest {
 		
 	}
 	
+	@Test
+	public void shouldMakeSignMovementForward(){
+		
+		SignDictionary dictionary = setUpDic();
+		List<TokenMorph> tokens = getStatementVoceEuOlhar();
+		
+		Contextualiser contextualiser = new Contextualiser(dictionary);
+		List<Sign> signs = contextualiser.contextualise(tokens);
+		
+		assertEquals(3, signs.size());
+		
+		Sign voceSign = signs.get(0);
+		Sign euSign = signs.get(1);
+		Sign olharSign = signs.get(2);
+		
+		assertEquals("VOCÊ", voceSign.getName());
+		assertEquals("EU", euSign.getName());
+		assertEquals("OLHAR", olharSign.getName());
+		
+		HandMovement olharMovement = olharSign.getSymbols().get(0).getRightHand().getMovement();
+		Direction olharDirection = olharMovement.getSegments().get(0).getDirection();
+		
+		Assert.assertEquals(Direction.PARA_FRENTE, olharDirection);
+		
+	}
 
 	private Sign generateSign(String signName) {
 
@@ -206,6 +233,21 @@ public class ContextualiserTest {
 		return tokens;
 	}
 	
-	
+	private List<TokenMorph> getStatementVoceEuOlhar(){
+		
+		List<TokenMorph> tokens  = new ArrayList<TokenMorph>();
+		
+		TokenMorph token = new TokenMorph("você", "você", SyntacticTags.SUBJ, PhraseTags.NP, MorphTags.PRON_PERS, "F=3S=NOM");
+		tokens.add(token);
+		
+		token = new TokenMorph("eu", "eu", SyntacticTags.ACC, PhraseTags.NP, MorphTags.PRON_PERS, "M/F=1S=NOM");
+		tokens.add(token);
+		
+		token = new TokenMorph("olhar", "olhar", SyntacticTags.VERB, PhraseTags.VP, MorphTags.V_INF, "-");
+		tokens.add(token);
+		
+		
+		return tokens;
+	}
 
 }
