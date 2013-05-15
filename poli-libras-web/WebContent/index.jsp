@@ -30,7 +30,7 @@
   
   <div class="leftPanel">
     <div class="form">
-      <textarea id="texto" rows="5" cols="40" name="texto">Escreva seu texto aqui</textarea>
+      <textarea id="texto" rows="5" cols="40" name="texto" placeholder="Escreva seu texto aqui"></textarea>
       <br>
       <input type="button" value="Traduzir" onclick="traduzir('texto','fraseTraduzida')">
     </div>
