@@ -114,6 +114,34 @@ public class ContextualiserTest {
 		
 	}
 
+	@Test
+	public void shouldMakeSignWithBothHands(){
+		
+		
+		SignDictionary dictionary = setUpDic();
+		List<TokenMorph> tokens = getStatementEuOlhoMuitoVoce();
+		
+		Contextualiser contextualiser = new Contextualiser(dictionary);
+		List<Sign> signs = contextualiser.contextualise(tokens);
+		
+		assertEquals(3, signs.size());
+		
+		Sign olharSign = signs.get(1);
+		assertEquals("OLHAR", olharSign.getName());
+		
+		Hand leftHand = olharSign.getSymbols().get(0).getLeftHand();
+		Hand rightHand = olharSign.getSymbols().get(0).getRightHand();
+		
+		Assert.assertNotNull(leftHand);
+		
+		Assert.assertEquals(leftHand.getFingers(), rightHand.getFingers());
+		Assert.assertEquals(leftHand.getMovement(), rightHand.getMovement());
+		Assert.assertEquals(leftHand.getShape(), rightHand.getShape());
+		Assert.assertEquals(leftHand.getOrientation(), rightHand.getOrientation());
+		
+		
+	}
+	
 	private Sign generateSign(String signName) {
 
 		Sign sign = new Sign();
@@ -246,6 +274,23 @@ public class ContextualiserTest {
 		token = new TokenMorph("olhar", "olhar", SyntacticTags.VERB, PhraseTags.VP, MorphTags.V_INF, "-");
 		tokens.add(token);
 		
+		
+		return tokens;
+	}
+	
+	private List<TokenMorph> getStatementEuOlhoMuitoVoce(){
+		
+		List<TokenMorph> tokens  = new ArrayList<TokenMorph>();
+		
+		TokenMorph token = new TokenMorph("eu", "eu", SyntacticTags.SUBJ, PhraseTags.NP, MorphTags.PRON_PERS, "M/F=1S=NOM");
+		tokens.add(token);
+		
+		token = new TokenMorph("olho", "olhar", SyntacticTags.VERB, PhraseTags.VP, MorphTags.V_FIN, "PR=1S=IND");
+		token.setProperty(TokenProperties.ADV_TYPE_KEY, TokenProperties.ADV_DEG_POS);
+		tokens.add(token);
+		
+		token = new TokenMorph("você", "você", SyntacticTags.PIV, PhraseTags.NP, MorphTags.PRON_PERS, "F=3S=NOM");
+		tokens.add(token);
 		
 		return tokens;
 	}
