@@ -35,7 +35,7 @@ public class LinkingVerbFinderTest {
 	
 	/**
 	 * @author brunamoreira
-	 * Oração com verbo composto ("Eu vou comer chocolate")
+	 * Oração com verbo composto ("Eu vou comer chocolate.")
 	 * retorna 0 tokens
 	 * 
 	 */
