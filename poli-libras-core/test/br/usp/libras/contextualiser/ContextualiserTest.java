@@ -7,6 +7,8 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
 
+import junit.framework.Assert;
+
 import org.junit.Test;
 
 import br.usp.libras.dic.SignDictionary;
@@ -15,6 +17,7 @@ import br.usp.libras.sign.VerbType;
 import br.usp.libras.sign.movement.Direction;
 import br.usp.libras.sign.movement.HandMovement;
 import br.usp.libras.sign.movement.Segment;
+import br.usp.libras.sign.movement.Speed;
 import br.usp.libras.sign.symbol.Hand;
 import br.usp.libras.sign.symbol.HandOrientation;
 import br.usp.libras.sign.symbol.HandPlane;
@@ -67,7 +70,78 @@ public class ContextualiserTest {
 		Segment seg = hand.getMovement().getSegments().get(0);
 		assertEquals(Direction.PARA_TRAS, seg.getDirection());
 	}
+	
+	@Test
+	public void shouldMakeSignMovementFast(){
+		
+		SignDictionary dic = setUpDic();
+		List<TokenMorph> tokens = getStatementEuOlheiRapidamente();
+		
+		Contextualiser contex = new Contextualiser(dic);
+		List<Sign> signs = contex.contextualise(tokens);
+		
+		assertEquals(2, signs.size());
+		Sign olheiSign = signs.get(1);
+		assertEquals("OLHAR", olheiSign.getName());
+		HandMovement move = olheiSign.getSymbols().get(0).getRightHand().getMovement();
+		assertEquals(Speed.RAPIDO, move.getSpeed());
+		
+	}
+	
+	@Test
+	public void shouldMakeSignMovementForward(){
+		
+		SignDictionary dictionary = setUpDic();
+		List<TokenMorph> tokens = getStatementVoceEuOlhar();
+		
+		Contextualiser contextualiser = new Contextualiser(dictionary);
+		List<Sign> signs = contextualiser.contextualise(tokens);
+		
+		assertEquals(3, signs.size());
+		
+		Sign voceSign = signs.get(0);
+		Sign euSign = signs.get(1);
+		Sign olharSign = signs.get(2);
+		
+		assertEquals("VOCÊ", voceSign.getName());
+		assertEquals("EU", euSign.getName());
+		assertEquals("OLHAR", olharSign.getName());
+		
+		HandMovement olharMovement = olharSign.getSymbols().get(0).getRightHand().getMovement();
+		Direction olharDirection = olharMovement.getSegments().get(0).getDirection();
+		
+		Assert.assertEquals(Direction.PARA_FRENTE, olharDirection);
+		
+	}
 
+	@Test
+	public void shouldMakeSignWithBothHands(){
+		
+		
+		SignDictionary dictionary = setUpDic();
+		List<TokenMorph> tokens = getStatementEuOlhoMuitoVoce();
+		
+		Contextualiser contextualiser = new Contextualiser(dictionary);
+		List<Sign> signs = contextualiser.contextualise(tokens);
+		
+		assertEquals(3, signs.size());
+		
+		Sign olharSign = signs.get(1);
+		assertEquals("OLHAR", olharSign.getName());
+		
+		Hand leftHand = olharSign.getSymbols().get(0).getLeftHand();
+		Hand rightHand = olharSign.getSymbols().get(0).getRightHand();
+		
+		Assert.assertNotNull(leftHand);
+		
+		Assert.assertEquals(leftHand.getFingers(), rightHand.getFingers());
+		Assert.assertEquals(leftHand.getMovement(), rightHand.getMovement());
+		Assert.assertEquals(leftHand.getShape(), rightHand.getShape());
+		Assert.assertEquals(leftHand.getOrientation(), rightHand.getOrientation());
+		
+		
+	}
+	
 	private Sign generateSign(String signName) {
 
 		Sign sign = new Sign();
@@ -172,6 +246,52 @@ public class ContextualiserTest {
 		tk = new TokenMorph("olha", "olhar", SyntacticTags.VERB, PhraseTags.VP, MorphTags.V_FIN, "PR=3S=IND");
 		tk.setProperty(TokenProperties.SUBJECT_TYPE_KEY, TokenProperties.SECPERSON);
 		tokens.add(tk);
+		return tokens;
+	}
+	
+	private List<TokenMorph> getStatementEuOlheiRapidamente() {
+
+		List<TokenMorph> tokens = new ArrayList<TokenMorph>();
+		TokenMorph tk = new TokenMorph("eu", "eu", SyntacticTags.SUBJ, PhraseTags.NP, MorphTags.PRON_PERS, "M/F=1S=NOM");
+		tokens.add(tk);
+		tk = new TokenMorph("olhei", "olhar", SyntacticTags.VERB, PhraseTags.VP, MorphTags.V_FIN, "PR=1S=IND");
+		tk.setProperty(TokenProperties.SUBJECT_TYPE_KEY, TokenProperties.FIRSTPERSON);
+		tk.setProperty(TokenProperties.ADV_TYPE_KEY, TokenProperties.ADV_MAN_FAST);
+		tokens.add(tk);
+		return tokens;
+	}
+	
+	private List<TokenMorph> getStatementVoceEuOlhar(){
+		
+		List<TokenMorph> tokens  = new ArrayList<TokenMorph>();
+		
+		TokenMorph token = new TokenMorph("você", "você", SyntacticTags.SUBJ, PhraseTags.NP, MorphTags.PRON_PERS, "F=3S=NOM");
+		tokens.add(token);
+		
+		token = new TokenMorph("eu", "eu", SyntacticTags.ACC, PhraseTags.NP, MorphTags.PRON_PERS, "M/F=1S=NOM");
+		tokens.add(token);
+		
+		token = new TokenMorph("olhar", "olhar", SyntacticTags.VERB, PhraseTags.VP, MorphTags.V_INF, "-");
+		tokens.add(token);
+		
+		
+		return tokens;
+	}
+	
+	private List<TokenMorph> getStatementEuOlhoMuitoVoce(){
+		
+		List<TokenMorph> tokens  = new ArrayList<TokenMorph>();
+		
+		TokenMorph token = new TokenMorph("eu", "eu", SyntacticTags.SUBJ, PhraseTags.NP, MorphTags.PRON_PERS, "M/F=1S=NOM");
+		tokens.add(token);
+		
+		token = new TokenMorph("olho", "olhar", SyntacticTags.VERB, PhraseTags.VP, MorphTags.V_FIN, "PR=1S=IND");
+		token.setProperty(TokenProperties.ADV_TYPE_KEY, TokenProperties.ADV_DEG_POS);
+		tokens.add(token);
+		
+		token = new TokenMorph("você", "você", SyntacticTags.PIV, PhraseTags.NP, MorphTags.PRON_PERS, "F=3S=NOM");
+		tokens.add(token);
+		
 		return tokens;
 	}
 
