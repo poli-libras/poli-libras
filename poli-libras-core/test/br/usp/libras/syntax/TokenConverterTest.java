@@ -54,7 +54,7 @@ public class TokenConverterTest {
 	
 	public static void main(String[] args) {
 		
-		String frase = "O cachorro comeu a lição";
+		String frase = "eu olho muito para você";
 		SyntacticAnalyser sa = new SyntacticAnalyser();
 		Sentence s = sa.analyse(frase).get(0);
 		
