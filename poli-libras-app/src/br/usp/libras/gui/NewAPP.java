@@ -31,7 +31,7 @@ public class NewAPP {
 	     applet.init();
 	
 	     signField = new JTextField();
-	     signField.setPreferredSize(new Dimension(100, 20));
+	     signField.setPreferredSize(new Dimension(200, 20));
 	     signLabel = new JLabel("Put your sentence here");
 	     
 	     JButton signButton = new JButton("Translate");
