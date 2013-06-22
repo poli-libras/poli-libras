@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import processing.core.PApplet;
-import br.usp.libras.dic.SQLiteDictionary;
 import br.usp.libras.jonah.VirtualJonah;
 import br.usp.libras.sign.Sign;
 import br.usp.libras.translator.Translator;
