@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import processing.core.PApplet;
+import br.usp.libras.dic.SQLiteDictionary;
 import br.usp.libras.jonah.VirtualJonah;
 import br.usp.libras.sign.Sign;
 import br.usp.libras.translator.Translator;
@@ -29,7 +30,7 @@ public class PoliLibrasApp extends VirtualJonah {
             try {
                 String frase = input.readLine();
                 System.out.println("Traduzindo frase:" + frase);
-                Translator translator = new Translator();
+                Translator translator = new Translator(new SQLiteDictionary());
                 translator.setVerbose();
                 this.setSignName("");
                 reset();
