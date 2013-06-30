@@ -7,6 +7,7 @@ import java.io.ObjectOutputStream;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +18,7 @@ import br.usp.libras.translator.Translator;
 /**
  * Utiliza a API tradutor para traduzir a frase fornecida pelo usuário Devolve a sequência de sinais para a view
  */
+@WebServlet("/translator")
 public class TranslatorServ extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -53,7 +55,7 @@ public class TranslatorServ extends HttpServlet {
             fos.close();
 
             // String host = ResourceBundle.getBundle("conf").getString("host");
-            // String host = "http://policidada.poli.usp.br";
+            //String host = "http://policidada.poli.usp.br";
             String host = "http://localhost:8080";
             String xmlUri = host + this.getServletContext().getContextPath() + "/" + dirName + "/" + filename;
             response.setHeader("xmlUri", xmlUri);
