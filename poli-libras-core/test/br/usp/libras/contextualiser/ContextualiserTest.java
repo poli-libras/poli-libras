@@ -265,13 +265,14 @@ public class ContextualiserTest {
 		
 		List<TokenMorph> tokens  = new ArrayList<TokenMorph>();
 		
-		TokenMorph token = new TokenMorph("você", "você", SyntacticTags.SUBJ, PhraseTags.NP, MorphTags.PRON_PERS, "F=3S=NOM");
+		TokenMorph token = new TokenMorph("você", "você", SyntacticTags.ACC, PhraseTags.NP, MorphTags.PRON_PERS, "F=3S=NOM");
 		tokens.add(token);
 		
-		token = new TokenMorph("eu", "eu", SyntacticTags.ACC, PhraseTags.NP, MorphTags.PRON_PERS, "M/F=1S=NOM");
+		token = new TokenMorph("eu", "eu", SyntacticTags.SUBJ, PhraseTags.NP, MorphTags.PRON_PERS, "M/F=1S=NOM");
 		tokens.add(token);
 		
 		token = new TokenMorph("olhar", "olhar", SyntacticTags.VERB, PhraseTags.VP, MorphTags.V_INF, "-");
+		token.setProperty(TokenProperties.SUBJECT_TYPE_KEY, TokenProperties.FIRSTPERSON);
 		tokens.add(token);
 		
 		
