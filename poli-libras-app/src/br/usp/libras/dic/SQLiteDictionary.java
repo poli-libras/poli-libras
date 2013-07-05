@@ -15,13 +15,14 @@ import br.usp.libras.dic.SignDictionary;
 
 public class SQLiteDictionary implements SignDictionary{
 
-	private final String develDatabaseURL = "jdbc:sqlite:resources/wikilibras.db";
-	private final String databaseURL = "jdbc:sqlite::resources:wikilibras.db";
+	private static final String DATABASE_URL = "jdbc:sqlite:resources/wikilibras.db";
+	//private static final String DATABASE_URL =  "jdbc:sqlite::resources:wikilibras.db";
+	
 	private SignDao dao;
 	
 	public SQLiteDictionary(){
 		
-		Configuration configSqlite = new AnnotationConfiguration().setProperty("hibernate.connection.url", develDatabaseURL);
+		Configuration configSqlite = new AnnotationConfiguration().setProperty("hibernate.connection.url", DATABASE_URL);
 		SessionFactory sessions = configSqlite.configure().buildSessionFactory();
 		Session session = sessions.openSession();        
         SignDaoFactory<Sign> factory = new SignDaoFactory<Sign>(session);
