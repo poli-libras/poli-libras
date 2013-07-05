@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
+import org.hibernate.cfg.Configuration;
 
 import br.usp.libras.data.SignDao;
 import br.usp.libras.data.SignDaoFactory;
@@ -14,11 +15,14 @@ import br.usp.libras.dic.SignDictionary;
 
 public class SQLiteDictionary implements SignDictionary{
 
+	private final String develDatabaseURL = "jdbc:sqlite:resources/wikilibras.db";
+	private final String databaseURL = "jdbc:sqlite::resources:wikilibras.db";
 	private SignDao dao;
 	
 	public SQLiteDictionary(){
 		
-		SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
+		Configuration configSqlite = new AnnotationConfiguration().setProperty("hibernate.connection.url", develDatabaseURL);
+		SessionFactory sessions = configSqlite.configure().buildSessionFactory();
 		Session session = sessions.openSession();        
         SignDaoFactory<Sign> factory = new SignDaoFactory<Sign>(session);
         this.dao = factory.getSignDao();

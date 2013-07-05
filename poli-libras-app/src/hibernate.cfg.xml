@@ -9,7 +9,6 @@
 
     <!-- NÃO COMMITAR ESTE ARQUIVO! -->	
 		<property name="hibernate.dialect">br.usp.libras.util.SQLiteDialect</property>
-		<property name="hibernate.connection.url">jdbc:sqlite:wikilibras.db</property>
 		<property name="hibernate.connection.driver_class">org.sqlite.JDBC</property>
 		<property name="hibernate.connection.username"> </property>
 		<property name="hibernate.connection.password"> </property>
