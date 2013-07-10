@@ -18,6 +18,8 @@ public class NewAPP {
 
 	private static JTextField signField;
 	private static JLabel signLabel;
+	private static final String labelMessage = "Digite sua frase";
+	private static final String buttonMessage = "Gerar Sinais";
 	
 	 public static void main(String[] args) {
 	     
@@ -32,21 +34,21 @@ public class NewAPP {
 	
 	     signField = new JTextField();
 	     signField.setPreferredSize(new Dimension(200, 20));
-	     signLabel = new JLabel("Put your sentence here");
+	     signLabel = new JLabel(labelMessage);
 	     
-	     JButton signButton = new JButton("Translate");
+	     JButton signButton = new JButton(buttonMessage);
 	     
 	     signButton.addActionListener( new ActionListener(){
 	    
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				String frase = signField.getText();
+				String setence = signField.getText();
 				
 				Translator translator = new Translator();
 				translator.setVerbose();
 
-				applet.loadSignsFromObject(translator.translate(frase));
+				applet.loadSignsFromObject(translator.translate(setence));
 			}
 			
 	     } );
