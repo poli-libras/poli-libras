@@ -1,6 +1,9 @@
 package br.usp.libras.gui;
 
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -22,26 +25,35 @@ public class PoliLibrasApp {
 	private static JTextField signField;
 	private static JLabel signLabel;
 	private static JComboBox dictionaryCombo;
-	private static final String LABEL_MESSAGE = "Digite sua frase";
+	private static JLabel dictionaryLabel;
+	
+	private static final String LABEL_MESSAGE = "Digite sua frase:  ";
 	private static final String BUTTON_MESSAGE = "Gerar Sinais";
-	private static final String[] COMBO_LIST = {"Local","Wikilibras"};
+	private static final String LABEL_MESSAGE_DICTIONARY = "Selecione a fonte dos sinais: ";
+	
+	private static final String[] COMBO_LIST = {"Local (offline)","Wikilibras (online)"};
 	
 	 public static void main(String[] args) {
 	     
 	     final JFrame frame = new JFrame("Poli-Libras APP");
 	     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	     frame.setResizable(true);
 	
 	     JPanel panel = new JPanel();
-	     JPanel buttonPanel = new JPanel();
+	     JPanel panelCommands = new JPanel(new GridBagLayout());
 	
 	     final VirtualJonah applet = new VirtualJonah();
+	     applet.setSize(100,100);
 	     applet.init();
+	     
 	     
 	     signField = new JTextField();
 	     signField.setPreferredSize(new Dimension(200, 20));
 	     signLabel = new JLabel(LABEL_MESSAGE);
 	     
 	     JButton signButton = new JButton(BUTTON_MESSAGE);
+	     
+	     dictionaryLabel = new JLabel(LABEL_MESSAGE_DICTIONARY);
 	     
 	     
 	     dictionaryCombo = new JComboBox(COMBO_LIST);
@@ -72,18 +84,63 @@ public class PoliLibrasApp {
 			
 	     } );
 	
-	     buttonPanel.add(signButton);
-	
-	     panel.add(applet);
-	     panel.add(signLabel);
-	     panel.add(signField);
-	     panel.add(buttonPanel);	     
-	     panel.add(dictionaryCombo);
+ 
+	     GridBagConstraints grid = new GridBagConstraints();
+	     grid.fill = GridBagConstraints.HORIZONTAL;
+	     grid.gridx=0;
+	     grid.gridy=0;
+	     panelCommands.add(signLabel,grid);
+
+	     grid.gridx=1;
+	     grid.gridy=0;
+	     panelCommands.add(signField,grid);
 	     
+	     grid.ipady= 20;
+	     grid.insets = new Insets(0,5,0,0);
+	     grid.gridx=2;
+	     grid.gridy=0;
+	     grid.gridheight = 3;
+	     grid.weighty = 1.0;   //request any extra vertical space
+	     panelCommands.add(signButton,grid);
+	     grid.ipady= 0;
+	     grid.insets = new Insets(0,0,0,0);
+	     
+	     grid.gridx=0;
+	     grid.gridy=1;
+	     panelCommands.add(dictionaryLabel,grid);
+	     
+	     grid.fill = GridBagConstraints.HORIZONTAL;
+	     grid.gridx=1;
+	     grid.gridy=1;
+	     panelCommands.add(dictionaryCombo,grid);
+	     
+	     JButton infoButton = new JButton("help");
+
+	     infoButton.addActionListener( new ActionListener(){
+	 	    
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(frame, "Este é o modulo desktop do Poli-Libras.\nPara mais informações visite nosso site: \n      http://www.polilibras.com.br/");
+
+			}
+			
+	     } );
+	     
+	     grid.ipady= 20;
+	     grid.fill = GridBagConstraints.HORIZONTAL;
+	     grid.gridheight = 3;
+	     grid.gridx=3;
+	     grid.gridy=0;
+	     panelCommands.add(infoButton,grid);
+	     grid.ipady=0;
+	     
+	     panel.add(applet);
+	     panel.add(panelCommands);
 	     
 	     frame.add(panel);
-	     frame.setSize(applet.getSize().width, applet.getSize().height +100);
-	
+	     frame.setSize(applet.getSize().width, applet.getSize().height +90);
+	     
+	    // panelCommands.setSize(applet.getSize().width, 100);
 	     frame.setVisible(true);
 	
 	 }
