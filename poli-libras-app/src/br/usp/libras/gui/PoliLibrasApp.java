@@ -72,7 +72,7 @@ public class PoliLibrasApp {
 	     grid.gridx=2;
 	     grid.gridy=0;
 	     grid.gridheight = 3;
-	     grid.weighty = 1.0;   //request any extra vertical space
+	     grid.weighty = 1.0;
 	     panelCommands.add(signButton,grid);
 	     grid.ipady= 0;
 	     grid.insets = new Insets(0,0,0,0);
@@ -109,12 +109,10 @@ public class PoliLibrasApp {
 					Translator translator;
 					
 					if(dictionaryCombo.getSelectedIndex()==0){
-						JOptionPane.showMessageDialog(null, (String) dictionaryCombo.getSelectedItem());
 						SignDictionary dic = new SQLiteDictionary();
 						translator = new Translator(dic);
 								
 					}else{
-						JOptionPane.showMessageDialog(null, (String) dictionaryCombo.getSelectedItem());
 						translator = new Translator();
 					}
 					
