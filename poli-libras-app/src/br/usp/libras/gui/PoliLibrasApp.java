@@ -30,9 +30,9 @@ public class PoliLibrasApp {
 	private static JButton signButton;
 	
 	private static final String LABEL_MESSAGE = "Digite sua frase:  ";
-	private static final String BUTTON_MESSAGE = "Gerar Sinais";
+	private static final String BUTTON_MESSAGE = "Traduzir";
 	private static final String LABEL_MESSAGE_DICTIONARY = "Selecione a fonte dos sinais: ";
-	private static final String BUTTON_SOBRE = "help";
+	private static final String BUTTON_SOBRE = "Sobre";
 	private static final String[] COMBO_LIST = {"Local (offline)","Wikilibras (online)"};
 	
 	 public static void main(String[] args) {
