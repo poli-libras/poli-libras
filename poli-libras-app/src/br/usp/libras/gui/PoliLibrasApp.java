@@ -26,65 +26,37 @@ public class PoliLibrasApp {
 	private static JLabel signLabel;
 	private static JComboBox dictionaryCombo;
 	private static JLabel dictionaryLabel;
+	private static JButton infoButton;
+	private static JButton signButton;
 	
 	private static final String LABEL_MESSAGE = "Digite sua frase:  ";
 	private static final String BUTTON_MESSAGE = "Gerar Sinais";
 	private static final String LABEL_MESSAGE_DICTIONARY = "Selecione a fonte dos sinais: ";
-	
+	private static final String BUTTON_SOBRE = "help";
 	private static final String[] COMBO_LIST = {"Local (offline)","Wikilibras (online)"};
 	
 	 public static void main(String[] args) {
 	     
 	     final JFrame frame = new JFrame("Poli-Libras APP");
 	     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	     frame.setResizable(true);
+	     frame.setResizable(false);
 	
 	     JPanel panel = new JPanel();
 	     JPanel panelCommands = new JPanel(new GridBagLayout());
 	
 	     final VirtualJonah applet = new VirtualJonah();
-	     applet.setSize(100,100);
 	     applet.init();
-	     
-	     
+	        
 	     signField = new JTextField();
 	     signField.setPreferredSize(new Dimension(200, 20));
-	     signLabel = new JLabel(LABEL_MESSAGE);
-	     
-	     JButton signButton = new JButton(BUTTON_MESSAGE);
-	     
+	     signLabel = new JLabel(LABEL_MESSAGE);  
+	     signButton = new JButton(BUTTON_MESSAGE);
+	    
 	     dictionaryLabel = new JLabel(LABEL_MESSAGE_DICTIONARY);
-	     
-	     
 	     dictionaryCombo = new JComboBox(COMBO_LIST);
 	     
-	     
-	     signButton.addActionListener( new ActionListener(){
-	    
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				String setence = signField.getText();
-				Translator translator;
-				
-				if(dictionaryCombo.getSelectedIndex()==0){
-					JOptionPane.showMessageDialog(null, (String) dictionaryCombo.getSelectedItem());
-					SignDictionary dic = new SQLiteDictionary();
-					translator = new Translator(dic);
-							
-				}else{
-					JOptionPane.showMessageDialog(null, (String) dictionaryCombo.getSelectedItem());
-					translator = new Translator();
-				}
-				
-				translator.setVerbose();
-				applet.loadSignsFromObject(translator.translate(setence));
-				applet.playSigns();
-			}
-			
-	     } );
-	
- 
+	     infoButton = new JButton(BUTTON_SOBRE);
+	          
 	     GridBagConstraints grid = new GridBagConstraints();
 	     grid.fill = GridBagConstraints.HORIZONTAL;
 	     grid.gridx=0;
@@ -114,18 +86,6 @@ public class PoliLibrasApp {
 	     grid.gridy=1;
 	     panelCommands.add(dictionaryCombo,grid);
 	     
-	     JButton infoButton = new JButton("help");
-
-	     infoButton.addActionListener( new ActionListener(){
-	 	    
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(frame, "Este é o modulo desktop do Poli-Libras.\nPara mais informações visite nosso site: \n      http://www.polilibras.com.br/");
-
-			}
-			
-	     } );
-	     
 	     grid.ipady= 20;
 	     grid.fill = GridBagConstraints.HORIZONTAL;
 	     grid.gridheight = 3;
@@ -140,7 +100,41 @@ public class PoliLibrasApp {
 	     frame.add(panel);
 	     frame.setSize(applet.getSize().width, applet.getSize().height +90);
 	     
-	    // panelCommands.setSize(applet.getSize().width, 100);
+	     signButton.addActionListener( new ActionListener(){
+	 	    
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					
+					String setence = signField.getText();
+					Translator translator;
+					
+					if(dictionaryCombo.getSelectedIndex()==0){
+						JOptionPane.showMessageDialog(null, (String) dictionaryCombo.getSelectedItem());
+						SignDictionary dic = new SQLiteDictionary();
+						translator = new Translator(dic);
+								
+					}else{
+						JOptionPane.showMessageDialog(null, (String) dictionaryCombo.getSelectedItem());
+						translator = new Translator();
+					}
+					
+					translator.setVerbose();
+					applet.loadSignsFromObject(translator.translate(setence));
+					applet.playSigns();
+				}
+				
+		     } );
+
+		     infoButton.addActionListener( new ActionListener(){
+		 	    
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					JOptionPane.showMessageDialog(frame, "Este é o modulo desktop do Poli-Libras.\nPara mais informações visite nosso site: \n      http://www.polilibras.com.br/");
+
+				}
+				
+		     } ); 
+
 	     frame.setVisible(true);
 	
 	 }
