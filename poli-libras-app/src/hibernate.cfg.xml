@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+	
+<hibernate-configuration>
+
+	<session-factory>
+
+    <!-- NÃO COMMITAR ESTE ARQUIVO! -->	
+		<property name="hibernate.dialect">br.usp.libras.util.SQLiteDialect</property>
+		<property name="hibernate.connection.driver_class">org.sqlite.JDBC</property>
+		<property name="hibernate.connection.username"> </property>
+		<property name="hibernate.connection.password"> </property>
+
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		<property name="hibernate.cache.provider_class">org.hibernate.cache.HashtableCacheProvider</property>
+
+ 		<mapping class="br.usp.libras.sign.Sign" />
+ 		<mapping class="br.usp.libras.sign.Word" />
+ 		<mapping class="br.usp.libras.sign.Literal" />
+ 		<mapping class="br.usp.libras.sign.Inherence" />
+ 		<mapping class="br.usp.libras.sign.symbol.Symbol" />
+ 		<mapping class="br.usp.libras.sign.symbol.Hand" />
+ 		<mapping class="br.usp.libras.sign.movement.HandMovement" />
+ 		<mapping class="br.usp.libras.sign.movement.Segment" />
+ 		<mapping class="br.usp.libras.sign.face.Face" />
+
+	</session-factory>
+
+</hibernate-configuration>
+	
