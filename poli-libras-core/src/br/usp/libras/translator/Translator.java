@@ -12,11 +12,12 @@ import br.usp.libras.syntax.TokenMorph;
 public class Translator {
 
     private SyntacticTranformer transformer = new SynTransfPortLibras();
-    private Contextualiser context = new Contextualiser();
+    private Contextualiser context;
     private boolean verbose = false;
 
-    public Translator() {
-
+    public Translator() 
+    {
+    	context = new Contextualiser();
     }
     
     public Translator(SignDictionary dic) {
