@@ -17,7 +17,7 @@
           parameters: {texto: texto},
           onSuccess: function(response) {
               $(idSaida).update(texto);
-              document.applets['VirtualJonah'].loadSignsFromSerialized(response.getHeader('xmlUri'));
+              document.applets['VirtualJonah'].loadSignsFromXmlString(response.getHeader('signsXmlString'));
               document.applets['VirtualJonah'].playSigns();
           }
       });
