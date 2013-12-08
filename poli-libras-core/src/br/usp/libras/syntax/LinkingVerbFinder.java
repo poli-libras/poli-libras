@@ -1,9 +1,5 @@
 package br.usp.libras.syntax;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -17,18 +13,11 @@ import java.util.Properties;
  */
 public class LinkingVerbFinder {
 
-    private static final String TAGGER_FILE = "resources/tagger.properties";
     private Properties tags = new Properties();
 	
 	public LinkingVerbFinder() {
-		
-		try {
-			File file = new File(TAGGER_FILE);
-			InputStream is = new FileInputStream(file);
-			tags.load(is);
-		} catch (IOException e) {
-			System.out.println("File " + TAGGER_FILE + " not found");
-		}
+		Tagger tagger = new Tagger();
+		tags = tagger.getTags();
 	}
 	
 	/**

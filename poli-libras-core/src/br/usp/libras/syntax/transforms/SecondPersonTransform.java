@@ -1,6 +1,7 @@
 package br.usp.libras.syntax.transforms;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -12,6 +13,7 @@ import br.usp.libras.syntax.SubjectFinder;
 import br.usp.libras.syntax.TokenMorph;
 import br.usp.libras.syntax.TokenProperties;
 import br.usp.libras.syntax.VerbFinder;
+import br.usp.libras.utils.ResourceLoader;
 
 import com.google.common.collect.Lists;
 
@@ -24,13 +26,15 @@ import com.google.common.collect.Lists;
  */
 public class SecondPersonTransform implements TokensTransform {
 	
-    private static final String PRONOUNS_FILE = "resources/pronomes2p.list";
+    private static final String PRONOUNS_FILE = "pronomes2p.list";
     private static Set<String> pronouns2p = new HashSet<String>();
     
     static {
+    	ResourceLoader loader = new ResourceLoader(PRONOUNS_FILE);
+    	File pronounsFile = loader.getResource();
         BufferedReader bf;
 		try {
-			bf = new BufferedReader(new FileReader(PRONOUNS_FILE));
+			bf = new BufferedReader(new FileReader(pronounsFile));
 			while (bf.ready()) {
 				String pron = bf.readLine().trim().toUpperCase();
 				pronouns2p.add(pron);

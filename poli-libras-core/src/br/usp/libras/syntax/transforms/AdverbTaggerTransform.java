@@ -1,16 +1,13 @@
 package br.usp.libras.syntax.transforms;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 import java.util.Properties;
 
-import com.google.common.collect.Lists;
-
+import br.usp.libras.syntax.Tagger;
 import br.usp.libras.syntax.TokenMorph;
 import br.usp.libras.syntax.TokenProperties;
+
+import com.google.common.collect.Lists;
 
 /**
  * Uses tagger.properties to tag information about the adverb
@@ -19,18 +16,11 @@ import br.usp.libras.syntax.TokenProperties;
  */
 public class AdverbTaggerTransform implements TokensTransform {
 	
-    private static final String TAGGER_FILE = "resources/tagger.properties";
     private Properties tags = new Properties();
 	
 	public AdverbTaggerTransform() {
-		
-		try {
-			File file = new File(TAGGER_FILE);
-			InputStream is = new FileInputStream(file);
-			tags.load(is);
-		} catch (IOException e) {
-			System.out.println("File " + TAGGER_FILE + " not found");
-		}
+		Tagger tagger = new Tagger();
+		tags = tagger.getTags();
 	}
 
 	@Override

@@ -2,7 +2,7 @@ package br.usp.libras.dic;
 
 import br.usp.libras.sign.Sign;
 
-public class DicTester {
+public class WikiLibrasDicTest {
     
     public static void main(String[] args) {
         

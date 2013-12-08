@@ -1,18 +1,17 @@
 
 package br.usp.wikilibras.ws;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Properties;
-import java.util.logging.Logger;
+
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 import javax.xml.ws.WebEndpoint;
 import javax.xml.ws.WebServiceClient;
 import javax.xml.ws.WebServiceFeature;
+
+import br.usp.libras.utils.PropertiesLoader;
 
 
 /**
@@ -27,20 +26,12 @@ public class SignDictionaryWSService
 {
 
     private final static URL SIGNDICTIONARYWSSERVICE_WSDL_LOCATION;
-    private final static Logger logger = Logger.getLogger(br.usp.wikilibras.ws.SignDictionaryWSService.class.getName());
 
-    static {
+    static { // incluído manualmente
     	
-        // incluído manualmente
-        File file = new File("conf/polilibras.conf");
-        Properties properties = new Properties();
-        try {
-            properties.load(new FileInputStream(file));
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        }
+    	PropertiesLoader propertiesLoader = new PropertiesLoader("polilibras.conf"); 
+        Properties properties = propertiesLoader.getProperties();
         String wsdl = properties.getProperty("dictionary_wsdl"); 
-        // incluído manualmente
     	
         URL url = null;
         try {
@@ -48,8 +39,8 @@ public class SignDictionaryWSService
             baseUrl = br.usp.wikilibras.ws.SignDictionaryWSService.class.getResource(".");
             url = new URL(baseUrl, wsdl);
         } catch (MalformedURLException e) {
-            logger.warning("Failed to create URL for the wsdl Location: 'http://localhost:8081/wikilibras/ws/dictionary?wsdl', retrying as a local file");
-            logger.warning(e.getMessage());
+            System.out.println("Failed to create URL for the wsdl Location: 'http://localhost:8081/wikilibras/ws/dictionary?wsdl', retrying as a local file");
+            System.out.println(e.getMessage());
         }
         SIGNDICTIONARYWSSERVICE_WSDL_LOCATION = url;
     }

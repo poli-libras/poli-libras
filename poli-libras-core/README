@@ -1,0 +1,3 @@
+Atenção: a pasta resources deve estar no build da aplicação.
+Para fazer isso no Eclipse:
+clique-direito no projeto >> Build Path >> Configure Build Path >> Source >> Add Folder (escolha resources)
