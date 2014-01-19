@@ -20,7 +20,8 @@ public class TokenConverter {
 
 			String syntaticTag = tk.getSyntacticTag().replace("B-", "").replace("I-", "");
 			String phraseTag = tk.getChunkTag().replace("B-", "").replace("I-", "");
-			TokenMorph tkm = new TokenMorph(tk.getLexeme(), tk.getLemmas()[0], syntaticTag, phraseTag, tk.getPOSTag(), tk.getFeatures());
+			String lemma = tk.getLemmas().length > 0 ? tk.getLemmas()[0] : tk.getLexeme();
+			TokenMorph tkm = new TokenMorph(tk.getLexeme(), lemma, syntaticTag, phraseTag, tk.getPOSTag(), tk.getFeatures());
 			tokensMorph.add(tkm);
 		}
 		

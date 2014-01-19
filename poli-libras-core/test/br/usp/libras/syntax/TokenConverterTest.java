@@ -54,12 +54,13 @@ public class TokenConverterTest {
 	
 	public static void main(String[] args) {
 		
-		String frase = "eu olho muito para você";
+		String frase = "eu olho tu";
 		SyntacticAnalyser sa = new SyntacticAnalyser();
 		Sentence s = sa.analyse(frase).get(0);
 		
 		for (Token tk: s.getTokens()) {
-			System.out.println(tk.getLexeme() + " " + tk.getLemmas()[0] + " " + tk.getSyntacticTag() + " " + tk.getChunkTag() 
+		    String lema = tk.getLemmas().length > 0 ? tk.getLemmas()[0] : "Sem lema";
+			System.out.println(tk.getLexeme() + " " + lema + " " + tk.getSyntacticTag() + " " + tk.getChunkTag() 
 					+ " " + tk.getPOSTag() + " " + tk.getFeatures() );
 		}
 	}

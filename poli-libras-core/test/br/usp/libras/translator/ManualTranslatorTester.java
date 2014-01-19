@@ -16,7 +16,7 @@ public class ManualTranslatorTester {
     		List<Sign> signs = translator.translate(input);
     		System.out.println("------------------------s");
     		System.out.println("Traducao para frase:" + input);
-    		for (Sign sign : signs) {
+    		for (Sign sign : signs) {  
 				System.out.println(sign.toString());
 			}
     	}
