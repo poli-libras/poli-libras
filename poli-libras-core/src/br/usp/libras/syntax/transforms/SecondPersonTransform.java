@@ -27,25 +27,23 @@ import com.google.common.collect.Lists;
 public class SecondPersonTransform implements TokensTransform {
 	
     private static final String PRONOUNS_FILE = "pronomes2p.list";
-    private static Set<String> pronouns2p = new HashSet<String>();
+    private Set<String> pronouns2p = new HashSet<String>();
     
-    static {
-    	ResourceLoader loader = new ResourceLoader(PRONOUNS_FILE);
-    	File pronounsFile = loader.getResource();
+    public SecondPersonTransform() {
+        ResourceLoader loader = new ResourceLoader(PRONOUNS_FILE);
+        File pronounsFile = loader.getResource();
         BufferedReader bf;
-		try {
-			bf = new BufferedReader(new FileReader(pronounsFile));
-			while (bf.ready()) {
-				String pron = bf.readLine().trim().toUpperCase();
-				pronouns2p.add(pron);
-			}
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        try {
+            bf = new BufferedReader(new FileReader(pronounsFile));
+            while (bf.ready()) {
+                String pron = bf.readLine().trim().toUpperCase();
+                pronouns2p.add(pron);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 	@Override
